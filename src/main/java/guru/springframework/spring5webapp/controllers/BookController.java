@@ -6,22 +6,26 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import guru.springframework.spring5webapp.domain.Book;
+import guru.springframework.spring5webapp.repositories.AuthorRepository;
 import guru.springframework.spring5webapp.repositories.BookRepository;
 
 @Controller
 public class BookController {
 
 	private final BookRepository bookRepository;
+
 	
 	public BookController(BookRepository bookRepository) {
-		super();
 		this.bookRepository = bookRepository;
+
 	}
 
-	@RequestMapping("/books-list")
+	@RequestMapping("/books")
 	public String getBooks(Model model) {
 		model.addAttribute("books", bookRepository.findAll());
 		
 		return "books/list";
 	}
+	
+	
 }
